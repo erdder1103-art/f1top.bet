@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>少林鐵手-大師兄(F1.TOP娛樂城)</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <title>Landing</title>
+
+  <!-- ✅ Facebook Pixel -->
+  <script>
+    !(function (f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function () {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+      };
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = !0;
+      n.version = "2.0";
+      n.queue = [];
+      t = b.createElement(e);
+      t.async = !0;
+      t.src = v;
+      s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s);
+    })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+
+    const FB_PIXEL_ID = "566381419359067";
+    fbq("init", FB_PIXEL_ID);
+    fbq("track", "PageView");
+    fbq("track", "ViewContent");
+  </script>
+
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=566381419359067&ev=PageView&noscript=1" />
+  </noscript>
+
+  <style>
+    :root{ --max-w: 420px; }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background:#000;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", Arial, sans-serif;
+    }
+
+    .stage{
+      width:min(100vw, var(--max-w));
+      aspect-ratio:9/16;
+      position:relative;
+      overflow:hidden;
+      border-radius:20px;
+      background:#000;
+    }
+
+    .bg{
+      position:absolute;
+      inset:0;
+      background:url("./images/bg.jpg") center/cover no-repeat;
+      z-index:0;
+    }
+
+    .coins-layer{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:2;
+    }
+
+    .logo{
+      position:absolute;
+      top:10px;
+      left:10px;
+      width:80px;
+      height:auto;
+      z-index:6;
+    }
+
+    .ip{
+      position:absolute;
+      top:-5%;
+      left:50%;
+      transform:translateX(-50%);
+      width:90%;
+      max-width:360px;
+      z-index:4;
+    }
+
+    .countdown{
+      position:absolute;
+      top:10px;
+      right:10px;
+      z-index:7;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.55);
+      color:#fff;
+      font-weight: 900;
+      letter-spacing: 1px;
+      font-size: 14px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,.15);
+    }
+
+    .btn-wrap{
+      position:absolute;
+      bottom:-80px;
+      left:50%;
+      transform:translateX(-50%);
+      width:85%;
+      max-width:340px;
+      z-index:10;
+      filter: drop-shadow(0 0 0 rgba(255,215,0,0));
+      animation: breatheGlow 1.6s ease-in-out infinite;
+    }
+
+    .btn-img{
+      width:100%;
+      display:block;
+      cursor:pointer;
+      transition: transform .12s ease, opacity .12s ease;
+      user-select:none;
+      -webkit-user-drag:none;
+    }
+
+    .btn-img:active{ transform:scale(0.97); }
+
+    @keyframes breatheGlow{
+      0%   { filter: drop-shadow(0 0 0 rgba(255,215,0,0)) drop-shadow(0 0 0 rgba(255,120,0,0)); transform: translateX(-50%) scale(1); }
+      50%  { filter: drop-shadow(0 0 18px rgba(255,215,0,.55)) drop-shadow(0 0 34px rgba(255,120,0,.35)); transform: translateX(-50%) scale(1.02); }
+      100% { filter: drop-shadow(0 0 0 rgba(255,215,0,0)) drop-shadow(0 0 0 rgba(255,120,0,0)); transform: translateX(-50%) scale(1); }
+    }
+
+    .coin{
+      position:absolute;
+      top:-12%;
+      width: var(--size);
+      height: var(--size);
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fff3b0 0%, #ffd166 25%, #f4b400 55%, #c98a00 100%);
+      box-shadow: 0 10px 18px rgba(0,0,0,.25);
+      opacity: .95;
+      transform: translate3d(0,0,0) rotate(0deg);
+      animation: fall linear forwards, spin linear infinite;
+    }
+
+    .coin::after{
+      content:"";
+      position:absolute;
+      inset: 18%;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,.35);
+      box-shadow: inset 0 0 0 2px rgba(0,0,0,.08);
+    }
+
+    @keyframes fall{
+      to { transform: translate3d(0, 130vh, 0) rotate(360deg); opacity: .0; }
+    }
+    @keyframes spin{
+      to { rotate: 360deg; }
+    }
+
+    @media (max-height: 680px){
+      .btn-wrap{ bottom:-70px; }
+      .logo{ width:72px; }
+      .countdown{ font-size: 13px; }
+    }
+
+/* ✅ Telegram 客服按鈕：tg.png + 呼吸動效（無底） */
+.tg-fab{
+  position:absolute;
+  right:14px;
+  top:56%;
+  transform: translateY(-50%);
+  width:52px;
+  height:52px;
+  z-index:12;
+  display:block;
+  cursor:pointer;
+  text-decoration:none;
+
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
+  /* ✅ 動效 */
+  animation: tgBreathe 1.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.tg-fab::before{
+  content:"";
+  width:52px;
+  height:52px;
+  display:block;
+  background:url("./images/tg.png") center/contain no-repeat;
+
+  /* ✅ 微微發亮（不會有圓底） */
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.25));
+}
+
+/* ✅ 呼吸：微放大 + 微亮 */
+@keyframes tgBreathe{
+  0%   { transform: translateY(-50%) scale(1);   opacity: 0.92; }
+  50%  { transform: translateY(-50%) scale(1.08); opacity: 1; }
+  100% { transform: translateY(-50%) scale(1);   opacity: 0.92; }
+}
+
+/* ✅ 點擊回饋 */
+.tg-fab:active{
+  transform: translateY(-50%) scale(0.92);
+  animation: none; /* 點擊時停一下呼吸更有手感 */
+}
+  </style>
+</head>
+
+<body>
+  <div class="stage">
+    <div class="bg"></div>
+
+    <div class="coins-layer" id="coinsLayer"></div>
+
+    <img src="./images/logo.png" class="logo" alt="logo">
+
+    <div class="countdown" id="countdown">10:00</div>
+
+    <img src="./images/ip.png" class="ip" alt="人物">
+
+    <div class="btn-wrap" id="btnWrap">
+      <img src="./images/btn.png" class="btn-img" id="ctaBtn" alt="button">
+    </div>
+
+    <!-- ✅ Telegram 客服按鈕 -->
+    <a class="tg-fab" id="tgSupport" href="https://t.me/F1top_bro" target="_blank" rel="noopener" aria-label="Telegram 客服"></a>
+  </div>
+
+<script>
+  const TARGET_URL = "https://s.f1.top/r?p=h2pEYZ5DDuYq";
+
+  // 倒數計時（10分鐘）
+  const countdownEl = document.getElementById("countdown");
+  let remainingSeconds = 10 * 60;
+
+  function renderCountdown(){
+    const m = String(Math.floor(remainingSeconds / 60)).padStart(2, "0");
+    const s = String(remainingSeconds % 60).padStart(2, "0");
+    countdownEl.textContent = `${m}:${s}`;
+  }
+
+  renderCountdown();
+  const timer = setInterval(() => {
+    remainingSeconds--;
+    if (remainingSeconds <= 0){
+      remainingSeconds = 0;
+      clearInterval(timer);
+    }
+    renderCountdown();
+  }, 1000);
+
+  // 金幣飄落（慢 + 稀疏）
+  const layer = document.getElementById("coinsLayer");
+
+  function spawnCoin(){
+    const coin = document.createElement("div");
+    coin.className = "coin";
+
+    const size = Math.floor(10 + Math.random() * 18);
+    const left = Math.random() * 100;
+    const dur = 6.5 + Math.random() * 4.5; // 6.5~11s
+    const delay = Math.random() * 0.6;
+    const spinDur = 0.8 + Math.random() * 1.2;
+
+    coin.style.setProperty("--size", size + "px");
+    coin.style.left = left + "%";
+    coin.style.animationDuration = `${dur}s, ${spinDur}s`;
+    coin.style.animationDelay = `${delay}s, 0s`;
+
+    layer.appendChild(coin);
+    setTimeout(() => coin.remove(), (dur + delay) * 1000 + 200);
+  }
+
+  setInterval(() => {
+    const n = 1 + Math.floor(Math.random() * 2);
+    for(let i=0;i<n;i++) spawnCoin();
+  }, 900);
+
+  // 主 CTA：追蹤 Lead（潛在客戶）
+  const btn = document.getElementById("ctaBtn");
+  let clicked = false;
+
+  btn.addEventListener("click", function(){
+    if(clicked) return;
+    clicked = true;
+    btn.style.opacity = "0.85";
+
+    try{
+      if(typeof fbq === "function"){
+        fbq("track", "Lead");
+      }
+    }catch(e){}
+
+    setTimeout(() => {
+      window.location.href = TARGET_URL;
+    }, 180);
+  });
+
+  // Telegram 客服：追蹤 Contact
+  const tg = document.getElementById("tgSupport");
+  tg.addEventListener("click", () => {
+    try{
+      if(typeof fbq === "function"){
+        fbq("track", "Contact");
+      }
+    }catch(e){}
+  });
+</script>
+
+</body>
+</html>
