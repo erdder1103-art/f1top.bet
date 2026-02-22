@@ -1,22 +1,22 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="zh-Hans">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>少林鐵手-大師兄(F1.TOP娛樂城)</title>
+  <title>少林铁手-大师兄(F1.TOP娱乐城)</title>
 
-  <!-- ✅ favicon（用絕對路徑較穩） -->
+  <!-- ✅ favicon（用绝对路径较稳） -->
   <link rel="icon" href="/favicon.ico" sizes="any">
 
   <!-- ✅ 基本 SEO -->
-  <meta name="description" content="新手福利｜點擊註冊送體驗金 10USDT，限時開放！立即領取專屬體驗金。" />
+  <meta name="description" content="新手福利｜点击注册送体验金 10USDT，限时开放！立即领取专属体验金。" />
   <link rel="canonical" href="https://f1top.bet/" />
 
   <!-- ✅ Open Graph（FB / LINE / Telegram） -->
-  <meta property="og:title" content="少林鐵手-大師兄｜新手專屬 10USDT 體驗金" />
-  <meta property="og:description" content="限時開放！點擊註冊立即領取 10USDT 體驗金，機會不等人。" />
+  <meta property="og:title" content="少林铁手-大师兄｜新手专属 10USDT 体验金" />
+  <meta property="og:description" content="限时开放！点击注册立即领取 10USDT 体验金，机会不等人。" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="F1.TOP娛樂城" />
+  <meta property="og:site_name" content="F1.TOP娱乐城" />
   <meta property="og:url" content="https://f1top.bet/" />
   <meta property="og:image" content="https://f1top.bet/images/share.jpg" />
   <meta property="og:image:secure_url" content="https://f1top.bet/images/share.jpg" />
@@ -24,10 +24,10 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
-  <!-- ✅ Twitter（Telegram 也會吃） -->
+  <!-- ✅ Twitter（Telegram 也会吃） -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="少林鐵手-大師兄｜新手專屬 10USDT 體驗金" />
-  <meta name="twitter:description" content="點擊註冊立即領取 10USDT 體驗金，限時開放！" />
+  <meta name="twitter:title" content="少林铁手-大师兄｜新手专属 10USDT 体验金" />
+  <meta name="twitter:description" content="点击注册立即领取 10USDT 体验金，限时开放！" />
   <meta name="twitter:image" content="https://f1top.bet/images/share.jpg" />
 
   <!-- ✅ Facebook Pixel -->
@@ -55,7 +55,7 @@
     fbq("track", "ViewContent");
   </script>
 
-  <!-- ✅ NoScript 備援 -->
+  <!-- ✅ NoScript 备援 -->
   <noscript>
     <img height="1" width="1" style="display:none"
       src="https://www.facebook.com/tr?id=566381419359067&ev=PageView&noscript=1" />
@@ -73,7 +73,7 @@
       align-items:center;
       min-height:100vh;
       min-height:100svh;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
     }
 
     .stage{
@@ -200,7 +200,7 @@
       .countdown{ font-size: 13px; }
     }
 
-    /* ✅ Telegram 客服按鈕：tg.png + 呼吸動效（無底） */
+    /* ✅ Telegram 客服按钮：tg.png + 呼吸动效（无底） */
     .tg-fab{
       position:absolute;
       right:14px;
@@ -261,14 +261,14 @@
       <img src="./images/btn.png" class="btn-img" id="ctaBtn" alt="button">
     </div>
 
-    <!-- ✅ Telegram 客服按鈕 -->
+    <!-- ✅ Telegram 客服按钮 -->
     <a class="tg-fab" id="tgSupport" href="https://t.me/F1top_bro" target="_blank" rel="noopener" aria-label="Telegram 客服"></a>
   </div>
 
 <script>
   const TARGET_URL = "https://t.me/f1topbet_bot";
 
-  // 倒數計時（10分鐘）
+  // 倒计时（10分钟）
   const countdownEl = document.getElementById("countdown");
   let remainingSeconds = 10 * 60;
 
@@ -288,7 +288,7 @@
     renderCountdown();
   }, 1000);
 
-  // 金幣飄落（慢 + 稀疏 + 切到背景自動暫停）
+  // 金币飘落（慢 + 稀疏 + 切到后台自动暂停）
   const layer = document.getElementById("coinsLayer");
 
   function spawnCoin(){
@@ -333,7 +333,7 @@
     else startCoins();
   });
 
-  // 主 CTA：追蹤 Lead（潛在客戶）
+  // 主 CTA：追踪 Lead（潜在客户）
   const btn = document.getElementById("ctaBtn");
   let clicked = false;
 
@@ -353,7 +353,7 @@
     }, 180);
   });
 
-  // Telegram 客服：追蹤 Contact + 保險恢復動畫
+  // Telegram 客服：追踪 Contact + 保险恢复动画
   const tg = document.getElementById("tgSupport");
   tg.addEventListener("click", () => {
     try{
