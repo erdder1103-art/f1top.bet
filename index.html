@@ -5,19 +5,43 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <title>少林铁手-大师兄</title>
 
+<!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s){
-if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)
-}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  if(f.fbq)return;
+  n=f.fbq=function(){
+    n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments);
+  };
+  if(!f._fbq)f._fbq=n;
+  n.push=n;
+  n.loaded=!0;
+  n.version='2.0';
+  n.queue=[];
+  t=b.createElement(e);
+  t.async=!0;
+  t.src=v;
+  s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s);
+}(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
-fbq('init','1259066269529059');
-fbq('track','PageView');
+/*
+  目前這頁沒有收集 email / phone，所以先用基本 init。
+  若之後有表單，可改成：
+
+  fbq('init', '1259066269529059', {
+    em: 'user@example.com',
+    ph: '886912345678'
+  });
+*/
+fbq('init', '1259066269529059');
+fbq('track', 'PageView');
 </script>
+
+<noscript>
+  <img height="1" width="1" style="display:none"
+       src="https://www.facebook.com/tr?id=1259066269529059&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Meta Pixel Code -->
 
 <style>
 :root{ --max-w:420px; }
@@ -157,60 +181,91 @@ body{
   <div class="bg"></div>
   <div class="coins-layer" id="coinsLayer"></div>
 
-  <img src="./images/logo.png" class="logo">
-  <img src="./images/ip.png" class="ip">
+  <img src="./images/logo.png" class="logo" alt="logo">
+  <img src="./images/ip.png" class="ip" alt="ip">
 
   <div class="btn-wrap">
-    <img src="./images/btn.png" class="btn-img" id="ctaBtn">
+    <img src="./images/btn.png" class="btn-img" id="ctaBtn" alt="CTA Button">
   </div>
 
-  <a class="tg-fab" id="tgSupport" href="https://t.me/F1top_bro" target="_blank" rel="noopener"></a>
+  <a class="tg-fab" id="tgSupport" href="https://t.me/F1top_bro" target="_blank" rel="noopener" aria-label="Telegram Support"></a>
 </div>
 
 <script>
-const TARGET_URL="https://t.me/f1topbet_bot";
+const TARGET_URL = "https://t.me/f1topbet_bot";
+const layer = document.getElementById("coinsLayer");
+const ctaBtn = document.getElementById("ctaBtn");
+const tgSupport = document.getElementById("tgSupport");
 
-const layer=document.getElementById("coinsLayer");
+let coinTimer = null;
+let isRedirecting = false;
 
-function spawnCoin(){
-  const coin=document.createElement("div");
-  coin.className="coin";
-  const size=Math.floor(10+Math.random()*18);
-  const left=Math.random()*100;
-  const dur=6.5+Math.random()*4.5;
-  const spinDur=0.8+Math.random()*1.2;
+function spawnCoin() {
+  const coin = document.createElement("div");
+  coin.className = "coin";
 
-  coin.style.setProperty("--size",size+"px");
-  coin.style.left=left+"%";
-  coin.style.animationDuration=`${dur}s,${spinDur}s`;
+  const size = Math.floor(10 + Math.random() * 18);
+  const left = Math.random() * 100;
+  const dur = 6.5 + Math.random() * 4.5;
+  const spinDur = 0.8 + Math.random() * 1.2;
+
+  coin.style.setProperty("--size", size + "px");
+  coin.style.left = left + "%";
+  coin.style.animationDuration = `${dur}s, ${spinDur}s`;
 
   layer.appendChild(coin);
-  setTimeout(()=>coin.remove(),dur*1000+200);
+  setTimeout(() => coin.remove(), dur * 1000 + 200);
 }
 
-let coinTimer=setInterval(()=>{
-  const n=1+Math.floor(Math.random()*2);
-  for(let i=0;i<n;i++) spawnCoin();
-},900);
+function startCoins() {
+  if (coinTimer) return;
+  coinTimer = setInterval(() => {
+    const n = 1 + Math.floor(Math.random() * 2);
+    for (let i = 0; i < n; i++) {
+      spawnCoin();
+    }
+  }, 900);
+}
 
-document.addEventListener("visibilitychange",()=>{
-  if(document.hidden){
-    clearInterval(coinTimer);
-  }else{
-    coinTimer=setInterval(()=>{
-      const n=1+Math.floor(Math.random()*2);
-      for(let i=0;i<n;i++) spawnCoin();
-    },900);
+function stopCoins() {
+  if (!coinTimer) return;
+  clearInterval(coinTimer);
+  coinTimer = null;
+}
+
+startCoins();
+
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    stopCoins();
+  } else {
+    startCoins();
   }
 });
 
-document.getElementById("ctaBtn").addEventListener("click",()=>{
-  if(typeof fbq==="function"){ fbq("track","Lead"); }
-  setTimeout(()=>{ window.location.href=TARGET_URL; },150);
+ctaBtn.addEventListener("click", () => {
+  if (isRedirecting) return;
+  isRedirecting = true;
+
+  if (typeof fbq === "function") {
+    fbq("track", "Lead", {
+      value: 1.00,
+      currency: "USD"
+    });
+  }
+
+  setTimeout(() => {
+    window.location.href = TARGET_URL;
+  }, 180);
 });
 
-document.getElementById("tgSupport").addEventListener("click",()=>{
-  if(typeof fbq==="function"){ fbq("track","Contact"); }
+tgSupport.addEventListener("click", () => {
+  if (typeof fbq === "function") {
+    fbq("track", "Contact", {
+      value: 1.00,
+      currency: "USD"
+    });
+  }
 });
 </script>
 
