@@ -1,273 +1,311 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>少林铁手-大师兄-注册送10USDT体验金</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>少林铁手-大师兄-注册送10USDT体验金</title>
 
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s){
-  if(f.fbq)return;
-  n=f.fbq=function(){
-    n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments);
-  };
-  if(!f._fbq)f._fbq=n;
-  n.push=n;
-  n.loaded=!0;
-  n.version='2.0';
-  n.queue=[];
-  t=b.createElement(e);
-  t.async=!0;
-  t.src=v;
-  s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s);
-}(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq) return;
+      n=f.fbq=function(){
+        n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments);
+      };
+      if(!f._fbq) f._fbq=n;
+      n.push=n;
+      n.loaded=!0;
+      n.version='2.0';
+      n.queue=[];
+      t=b.createElement(e);
+      t.async=!0;
+      t.src=v;
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s);
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
-/*
-  目前這頁沒有收集 email / phone，所以先用基本 init。
-  若之後有表單，可改成：
+    // Pixel ID
+    fbq('init', '1292193032259788');
+    fbq('track', 'PageView');
+  </script>
 
-  fbq('init', '1292193032259788', {
-    em: 'user@example.com',
-    ph: '886912345678'
-  });
-*/
-fbq('init', '1292193032259788');
-fbq('track', 'PageView');
-</script>
+  <noscript>
+    <img
+      height="1"
+      width="1"
+      style="display:none"
+      src="https://www.facebook.com/tr?id=1292193032259788&ev=PageView&noscript=1"
+      alt=""
+    />
+  </noscript>
+  <!-- End Meta Pixel Code -->
 
-<noscript>
-  <img height="1" width="1" style="display:none"
-       src="https://www.facebook.com/tr?id=1292193032259788&ev=PageView&noscript=1"/>
-</noscript>
-<!-- End Meta Pixel Code -->
+  <style>
+    :root { --max-w: 420px; }
+    * { box-sizing: border-box; }
 
-<style>
-:root{ --max-w:420px; }
-*{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background:#000;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+      min-height:100svh;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans TC",Arial,sans-serif;
+    }
 
-body{
-  margin:0;
-  background:#000;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  min-height:100vh;
-  min-height:100svh;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans TC",Arial,sans-serif;
-}
+    .stage{
+      width:min(100vw,var(--max-w));
+      aspect-ratio:9/16;
+      position:relative;
+      overflow:hidden;
+      border-radius:20px;
+      background:#000;
+    }
 
-.stage{
-  width:min(100vw,var(--max-w));
-  aspect-ratio:9/16;
-  position:relative;
-  overflow:hidden;
-  border-radius:20px;
-  background:#000;
-}
+    .bg{
+      position:absolute;
+      inset:0;
+      background:url("./images/bg.jpg") center/cover no-repeat;
+      z-index:0;
+    }
 
-.bg{
-  position:absolute;
-  inset:0;
-  background:url("./images/bg.jpg") center/cover no-repeat;
-  z-index:0;
-}
+    .coins-layer{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:2;
+    }
 
-.coins-layer{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  overflow:hidden;
-  z-index:2;
-}
+    .logo{
+      position:absolute;
+      top:-10px;
+      left:-10px;
+      width:150px;
+      z-index:6;
+    }
 
-.logo{
-  position:absolute;
-  top:-10px;
-  left:-10px;
-  width:150px;
-  z-index:6;
-}
+    .ip{
+      position:absolute;
+      top:-5%;
+      left:50%;
+      transform:translateX(-50%);
+      width:90%;
+      max-width:360px;
+      z-index:4;
+    }
 
-.ip{
-  position:absolute;
-  top:-5%;
-  left:50%;
-  transform:translateX(-50%);
-  width:90%;
-  max-width:360px;
-  z-index:4;
-}
+    .btn-wrap{
+      position:absolute;
+      bottom:-90px;
+      left:50%;
+      transform:translateX(-50%);
+      width:85%;
+      max-width:350px;
+      z-index:10;
+      animation:breatheGlow 1.6s ease-in-out infinite;
+    }
 
-.btn-wrap{
-  position:absolute;
-  bottom:-90px;
-  left:50%;
-  transform:translateX(-50%);
-  width:85%;
-  max-width:350px;
-  z-index:10;
-  animation:breatheGlow 1.6s ease-in-out infinite;
-}
+    .btn-img{
+      width:100%;
+      display:block;
+      cursor:pointer;
+      transition:transform .12s ease, opacity .12s ease;
+      user-select:none;
+      -webkit-user-drag:none;
+    }
 
-.btn-img{
-  width:100%;
-  display:block;
-  cursor:pointer;
-  transition:transform .12s ease,opacity .12s ease;
-  user-select:none;
-  -webkit-user-drag:none;
-}
+    .btn-img:active{
+      transform:scale(0.97);
+    }
 
-.btn-img:active{ transform:scale(0.97); }
+    @keyframes breatheGlow{
+      0%{
+        filter:drop-shadow(0 0 0 rgba(255,215,0,0));
+        transform:translateX(-50%) scale(1);
+      }
+      50%{
+        filter:drop-shadow(0 0 18px rgba(255,215,0,.55));
+        transform:translateX(-50%) scale(1.02);
+      }
+      100%{
+        filter:drop-shadow(0 0 0 rgba(255,215,0,0));
+        transform:translateX(-50%) scale(1);
+      }
+    }
 
-@keyframes breatheGlow{
-  0%{ filter:drop-shadow(0 0 0 rgba(255,215,0,0)); transform:translateX(-50%) scale(1); }
-  50%{ filter:drop-shadow(0 0 18px rgba(255,215,0,.55)); transform:translateX(-50%) scale(1.02); }
-  100%{ filter:drop-shadow(0 0 0 rgba(255,215,0,0)); transform:translateX(-50%) scale(1); }
-}
+    .coin{
+      position:absolute;
+      top:-12%;
+      width:var(--size);
+      height:var(--size);
+      border-radius:50%;
+      background:radial-gradient(circle at 30% 30%, #fff3b0 0%, #ffd166 25%, #f4b400 55%, #c98a00 100%);
+      box-shadow:0 10px 18px rgba(0,0,0,.25);
+      opacity:.95;
+      animation:fall linear forwards, spin linear infinite;
+    }
 
-.coin{
-  position:absolute;
-  top:-12%;
-  width:var(--size);
-  height:var(--size);
-  border-radius:50%;
-  background:radial-gradient(circle at 30% 30%, #fff3b0 0%, #ffd166 25%, #f4b400 55%, #c98a00 100%);
-  box-shadow:0 10px 18px rgba(0,0,0,.25);
-  opacity:.95;
-  animation:fall linear forwards,spin linear infinite;
-}
+    @keyframes fall{
+      to{
+        transform:translate3d(0,130vh,0) rotate(360deg);
+        opacity:0;
+      }
+    }
 
-@keyframes fall{
-  to{ transform:translate3d(0,130vh,0) rotate(360deg); opacity:0; }
-}
-@keyframes spin{
-  to{ rotate:360deg; }
-}
+    @keyframes spin{
+      to{ rotate:360deg; }
+    }
 
-.tg-fab{
-  position:absolute;
-  right:14px;
-  top:56%;
-  transform:translateY(-50%);
-  width:52px;
-  height:52px;
-  z-index:12;
-  display:block;
-  animation:tgBreathe 1.6s ease-in-out infinite;
-}
+    .tg-fab{
+      position:absolute;
+      right:14px;
+      top:56%;
+      transform:translateY(-50%);
+      width:52px;
+      height:52px;
+      z-index:12;
+      display:block;
+      animation:tgBreathe 1.6s ease-in-out infinite;
+    }
 
-.tg-fab::before{
-  content:"";
-  width:52px;
-  height:52px;
-  display:block;
-  background:url("./images/tg.png") center/contain no-repeat;
-  filter:drop-shadow(0 6px 10px rgba(0,0,0,.25));
-}
+    .tg-fab::before{
+      content:"";
+      width:52px;
+      height:52px;
+      display:block;
+      background:url("./images/tg.png") center/contain no-repeat;
+      filter:drop-shadow(0 6px 10px rgba(0,0,0,.25));
+    }
 
-@keyframes tgBreathe{
-  0%{ transform:translateY(-50%) scale(1); opacity:.92; }
-  50%{ transform:translateY(-50%) scale(1.08); opacity:1; }
-  100%{ transform:translateY(-50%) scale(1); opacity:.92; }
-}
-</style>
+    @keyframes tgBreathe{
+      0%{
+        transform:translateY(-50%) scale(1);
+        opacity:.92;
+      }
+      50%{
+        transform:translateY(-50%) scale(1.08);
+        opacity:1;
+      }
+      100%{
+        transform:translateY(-50%) scale(1);
+        opacity:.92;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<div class="stage">
-  <div class="bg"></div>
-  <div class="coins-layer" id="coinsLayer"></div>
+  <div class="stage">
+    <div class="bg"></div>
+    <div class="coins-layer" id="coinsLayer"></div>
 
-  <img src="./images/logo.png" class="logo" alt="logo">
-  <img src="./images/ip.png" class="ip" alt="ip">
+    <img src="./images/logo.png" class="logo" alt="logo">
+    <img src="./images/ip.png" class="ip" alt="ip">
 
-  <div class="btn-wrap">
-    <img src="./images/btn.png" class="btn-img" id="ctaBtn" alt="CTA Button">
+    <div class="btn-wrap">
+      <img src="./images/btn.png" class="btn-img" id="ctaBtn" alt="CTA Button">
+    </div>
+
+    <a
+      class="tg-fab"
+      id="tgSupport"
+      href="https://t.me/F1top_bro"
+      target="_blank"
+      rel="noopener"
+      aria-label="Telegram Support"
+    ></a>
   </div>
 
-  <a class="tg-fab" id="tgSupport" href="https://t.me/F1top_bro" target="_blank" rel="noopener" aria-label="Telegram Support"></a>
-</div>
+  <script>
+    const PIXEL_ID = "1292193032259788";
+    const TARGET_URL = "https://t.me/f1topbet_bot";
+    const layer = document.getElementById("coinsLayer");
+    const ctaBtn = document.getElementById("ctaBtn");
+    const tgSupport = document.getElementById("tgSupport");
 
-<script>
-const TARGET_URL = "https://t.me/f1topbet_bot";
-const layer = document.getElementById("coinsLayer");
-const ctaBtn = document.getElementById("ctaBtn");
-const tgSupport = document.getElementById("tgSupport");
+    let coinTimer = null;
+    let isRedirecting = false;
 
-let coinTimer = null;
-let isRedirecting = false;
+    function spawnCoin() {
+      const coin = document.createElement("div");
+      coin.className = "coin";
 
-function spawnCoin() {
-  const coin = document.createElement("div");
-  coin.className = "coin";
+      const size = Math.floor(10 + Math.random() * 18);
+      const left = Math.random() * 100;
+      const dur = 6.5 + Math.random() * 4.5;
+      const spinDur = 0.8 + Math.random() * 1.2;
 
-  const size = Math.floor(10 + Math.random() * 18);
-  const left = Math.random() * 100;
-  const dur = 6.5 + Math.random() * 4.5;
-  const spinDur = 0.8 + Math.random() * 1.2;
+      coin.style.setProperty("--size", size + "px");
+      coin.style.left = left + "%";
+      coin.style.animationDuration = `${dur}s, ${spinDur}s`;
 
-  coin.style.setProperty("--size", size + "px");
-  coin.style.left = left + "%";
-  coin.style.animationDuration = `${dur}s, ${spinDur}s`;
-
-  layer.appendChild(coin);
-  setTimeout(() => coin.remove(), dur * 1000 + 200);
-}
-
-function startCoins() {
-  if (coinTimer) return;
-  coinTimer = setInterval(() => {
-    const n = 1 + Math.floor(Math.random() * 2);
-    for (let i = 0; i < n; i++) {
-      spawnCoin();
+      layer.appendChild(coin);
+      setTimeout(() => coin.remove(), dur * 1000 + 200);
     }
-  }, 900);
-}
 
-function stopCoins() {
-  if (!coinTimer) return;
-  clearInterval(coinTimer);
-  coinTimer = null;
-}
+    function startCoins() {
+      if (coinTimer) return;
+      coinTimer = setInterval(() => {
+        const n = 1 + Math.floor(Math.random() * 2);
+        for (let i = 0; i < n; i++) {
+          spawnCoin();
+        }
+      }, 900);
+    }
 
-startCoins();
+    function stopCoins() {
+      if (!coinTimer) return;
+      clearInterval(coinTimer);
+      coinTimer = null;
+    }
 
-document.addEventListener("visibilitychange", () => {
-  if (document.hidden) {
-    stopCoins();
-  } else {
+    function safeTrack(eventName, params) {
+      try {
+        if (typeof fbq === "function") {
+          fbq("track", eventName, params || {});
+        }
+      } catch (err) {
+        console.warn("Meta Pixel track error:", err);
+      }
+    }
+
+    function redirectWithTracking(url) {
+      if (isRedirecting) return;
+      isRedirecting = true;
+
+      safeTrack("Lead", {
+        value: 1.00,
+        currency: "USD"
+      });
+
+      setTimeout(() => {
+        window.location.href = url;
+      }, 250);
+    }
+
     startCoins();
-  }
-});
 
-ctaBtn.addEventListener("click", () => {
-  if (isRedirecting) return;
-  isRedirecting = true;
-
-  if (typeof fbq === "function") {
-    fbq("track", "Lead", {
-      value: 1.00,
-      currency: "USD"
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        stopCoins();
+      } else {
+        startCoins();
+      }
     });
-  }
 
-  setTimeout(() => {
-    window.location.href = TARGET_URL;
-  }, 180);
-});
-
-tgSupport.addEventListener("click", () => {
-  if (typeof fbq === "function") {
-    fbq("track", "Contact", {
-      value: 1.00,
-      currency: "USD"
+    ctaBtn.addEventListener("click", () => {
+      redirectWithTracking(TARGET_URL);
     });
-  }
-});
-</script>
 
+    tgSupport.addEventListener("click", () => {
+      safeTrack("Contact", {
+        value: 1.00,
+        currency: "USD"
+      });
+    });
+  </script>
 </body>
 </html>
