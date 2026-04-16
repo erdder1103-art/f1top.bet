@@ -5,8 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>少林铁手-大师兄-注册送10USDT体验金</title>
 
-  <!-- Meta Pixel Code -->
   <script>
+    window.APP_CONFIG = {
+      PIXEL_ID: '1292193032259788',
+      TARGET_URL: 'https://t.me/f1topbet_bot',
+      SUPPORT_URL: 'https://t.me/F1top_bro',
+      REDIRECT_DELAY: 800
+    };
+
     !function(f,b,e,v,n,t,s){
       if(f.fbq) return;
       n=f.fbq=function(){
@@ -24,8 +30,7 @@
       s.parentNode.insertBefore(t,s);
     }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
-    // Pixel ID
-    fbq('init', '1292193032259788');
+    fbq('init', window.APP_CONFIG.PIXEL_ID);
     fbq('track', 'PageView');
   </script>
 
@@ -38,7 +43,6 @@
       alt=""
     />
   </noscript>
-  <!-- End Meta Pixel Code -->
 
   <style>
     :root { --max-w: 420px; }
@@ -69,6 +73,8 @@
       inset:0;
       background:url("./images/bg.jpg") center/cover no-repeat;
       z-index:0;
+      user-select:none;
+      -webkit-user-drag:none;
     }
 
     .coins-layer{
@@ -85,6 +91,9 @@
       left:-10px;
       width:150px;
       z-index:6;
+      pointer-events:none;
+      user-select:none;
+      -webkit-user-drag:none;
     }
 
     .ip{
@@ -95,6 +104,9 @@
       width:90%;
       max-width:360px;
       z-index:4;
+      pointer-events:none;
+      user-select:none;
+      -webkit-user-drag:none;
     }
 
     .btn-wrap{
@@ -105,6 +117,14 @@
       width:85%;
       max-width:350px;
       z-index:10;
+    }
+
+    .cta-link{
+      display:block;
+      width:100%;
+      text-decoration:none;
+      -webkit-tap-highlight-color:transparent;
+      outline:none;
       animation:breatheGlow 1.6s ease-in-out infinite;
     }
 
@@ -117,22 +137,28 @@
       -webkit-user-drag:none;
     }
 
-    .btn-img:active{
+    .cta-link:active .btn-img{
       transform:scale(0.97);
+    }
+
+    .cta-link.is-disabled,
+    .tg-fab.is-disabled{
+      pointer-events:none;
+      opacity:.98;
     }
 
     @keyframes breatheGlow{
       0%{
         filter:drop-shadow(0 0 0 rgba(255,215,0,0));
-        transform:translateX(-50%) scale(1);
+        transform:translateX(0) scale(1);
       }
       50%{
         filter:drop-shadow(0 0 18px rgba(255,215,0,.55));
-        transform:translateX(-50%) scale(1.02);
+        transform:translateX(0) scale(1.02);
       }
       100%{
         filter:drop-shadow(0 0 0 rgba(255,215,0,0));
-        transform:translateX(-50%) scale(1);
+        transform:translateX(0) scale(1);
       }
     }
 
@@ -169,6 +195,7 @@
       z-index:12;
       display:block;
       animation:tgBreathe 1.6s ease-in-out infinite;
+      -webkit-tap-highlight-color:transparent;
     }
 
     .tg-fab::before{
@@ -202,11 +229,20 @@
     <div class="bg"></div>
     <div class="coins-layer" id="coinsLayer"></div>
 
-    <img src="./images/logo.png" class="logo" alt="logo">
-    <img src="./images/ip.png" class="ip" alt="ip">
+    <img src="./images/logo.png" class="logo" alt="logo" loading="eager">
+    <img src="./images/ip.png" class="ip" alt="ip" loading="eager">
 
     <div class="btn-wrap">
-      <img src="./images/btn.png" class="btn-img" id="ctaBtn" alt="CTA Button">
+      <a
+        href="https://t.me/f1topbet_bot"
+        class="cta-link"
+        id="ctaBtn"
+        data-area="main_cta"
+        aria-label="Open Telegram Bot"
+        rel="noopener"
+      >
+        <img src="./images/btn.png" class="btn-img" alt="CTA Button" loading="eager">
+      </a>
     </div>
 
     <a
@@ -215,97 +251,183 @@
       href="https://t.me/F1top_bro"
       target="_blank"
       rel="noopener"
+      data-area="tg_support"
       aria-label="Telegram Support"
     ></a>
   </div>
 
   <script>
-    const PIXEL_ID = "1292193032259788";
-    const TARGET_URL = "https://t.me/f1topbet_bot";
-    const layer = document.getElementById("coinsLayer");
-    const ctaBtn = document.getElementById("ctaBtn");
-    const tgSupport = document.getElementById("tgSupport");
+    (function(){
+      var PIXEL_ID = window.APP_CONFIG.PIXEL_ID;
+      var TARGET_URL = window.APP_CONFIG.TARGET_URL;
+      var SUPPORT_URL = window.APP_CONFIG.SUPPORT_URL;
+      var REDIRECT_DELAY = window.APP_CONFIG.REDIRECT_DELAY;
 
-    let coinTimer = null;
-    let isRedirecting = false;
+      var layer = document.getElementById("coinsLayer");
+      var ctaBtn = document.getElementById("ctaBtn");
+      var tgSupport = document.getElementById("tgSupport");
 
-    function spawnCoin() {
-      const coin = document.createElement("div");
-      coin.className = "coin";
+      var coinTimer = null;
+      var isRedirecting = false;
+      var redirectTimer = null;
 
-      const size = Math.floor(10 + Math.random() * 18);
-      const left = Math.random() * 100;
-      const dur = 6.5 + Math.random() * 4.5;
-      const spinDur = 0.8 + Math.random() * 1.2;
+      function spawnCoin() {
+        var coin = document.createElement("div");
+        coin.className = "coin";
 
-      coin.style.setProperty("--size", size + "px");
-      coin.style.left = left + "%";
-      coin.style.animationDuration = `${dur}s, ${spinDur}s`;
+        var size = Math.floor(10 + Math.random() * 18);
+        var left = Math.random() * 100;
+        var dur = 6.5 + Math.random() * 4.5;
+        var spinDur = 0.8 + Math.random() * 1.2;
 
-      layer.appendChild(coin);
-      setTimeout(() => coin.remove(), dur * 1000 + 200);
-    }
+        coin.style.setProperty("--size", size + "px");
+        coin.style.left = left + "%";
+        coin.style.animationDuration = dur + "s, " + spinDur + "s";
 
-    function startCoins() {
-      if (coinTimer) return;
-      coinTimer = setInterval(() => {
-        const n = 1 + Math.floor(Math.random() * 2);
-        for (let i = 0; i < n; i++) {
-          spawnCoin();
-        }
-      }, 900);
-    }
-
-    function stopCoins() {
-      if (!coinTimer) return;
-      clearInterval(coinTimer);
-      coinTimer = null;
-    }
-
-    function safeTrack(eventName, params) {
-      try {
-        if (typeof fbq === "function") {
-          fbq("track", eventName, params || {});
-        }
-      } catch (err) {
-        console.warn("Meta Pixel track error:", err);
+        layer.appendChild(coin);
+        setTimeout(function(){
+          coin.remove();
+        }, dur * 1000 + 200);
       }
-    }
 
-    function redirectWithTracking(url) {
-      if (isRedirecting) return;
-      isRedirecting = true;
+      function startCoins() {
+        if (coinTimer) return;
+        coinTimer = setInterval(function(){
+          var n = 1 + Math.floor(Math.random() * 2);
+          for (var i = 0; i < n; i++) {
+            spawnCoin();
+          }
+        }, 900);
+      }
 
-      safeTrack("Lead", {
-        value: 1.00,
-        currency: "USD"
-      });
+      function stopCoins() {
+        if (!coinTimer) return;
+        clearInterval(coinTimer);
+        coinTimer = null;
+      }
 
-      setTimeout(() => {
+      function createEventId(){
+        if (window.crypto && typeof window.crypto.randomUUID === "function") {
+          return window.crypto.randomUUID();
+        }
+        return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c){
+          var r = Math.random() * 16 | 0;
+          var v = c === "x" ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
+      }
+
+      function sendTrack(eventName, params, options){
+        try{
+          if (typeof fbq === "function") {
+            fbq("track", eventName, params, options);
+          }
+        }catch(e){}
+      }
+
+      function sendTrackCustom(eventName, params, options){
+        try{
+          if (typeof fbq === "function") {
+            fbq("trackCustom", eventName, params, options);
+          }
+        }catch(e){}
+      }
+
+      function trackMainCTA(area){
+        var eventId = createEventId();
+
+        var leadParams = {
+          content_name: "telegram_bot_click",
+          content_category: "telegram_redirect",
+          contact_method: "telegram",
+          click_area: area || "main_cta",
+          destination: "telegram_bot",
+          value: 1.00,
+          currency: "USD"
+        };
+
+        var customParams = {
+          click_area: area || "main_cta",
+          destination: "telegram_bot",
+          contact_method: "telegram"
+        };
+
+        sendTrack("Lead", leadParams, { eventID: eventId });
+        sendTrackCustom("TelegramClick", customParams, { eventID: eventId });
+      }
+
+      function trackSupportCTA(area){
+        var eventId = createEventId();
+
+        var contactParams = {
+          content_name: "telegram_support_click",
+          content_category: "telegram_redirect",
+          contact_method: "telegram",
+          click_area: area || "tg_support",
+          destination: "telegram_support"
+        };
+
+        var customParams = {
+          click_area: area || "tg_support",
+          destination: "telegram_support",
+          contact_method: "telegram"
+        };
+
+        sendTrack("Contact", contactParams, { eventID: eventId });
+        sendTrackCustom("TelegramSupportClick", customParams, { eventID: eventId });
+      }
+
+      function go(url){
         window.location.href = url;
-      }, 250);
-    }
-
-    startCoins();
-
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) {
-        stopCoins();
-      } else {
-        startCoins();
       }
-    });
 
-    ctaBtn.addEventListener("click", () => {
-      redirectWithTracking(TARGET_URL);
-    });
+      function resetState(){
+        isRedirecting = false;
+        if (redirectTimer) {
+          clearTimeout(redirectTimer);
+          redirectTimer = null;
+        }
+        ctaBtn.classList.remove("is-disabled");
+        tgSupport.classList.remove("is-disabled");
+      }
 
-    tgSupport.addEventListener("click", () => {
-      safeTrack("Contact", {
-        value: 1.00,
-        currency: "USD"
+      startCoins();
+
+      document.addEventListener("visibilitychange", function(){
+        if (document.hidden) {
+          stopCoins();
+        } else {
+          startCoins();
+        }
       });
-    });
+
+      window.addEventListener("pageshow", function(event){
+        if (event.persisted) {
+          resetState();
+        } else {
+          isRedirecting = false;
+        }
+      });
+
+      ctaBtn.addEventListener("click", function(e){
+        e.preventDefault();
+        if (isRedirecting) return;
+
+        isRedirecting = true;
+        ctaBtn.classList.add("is-disabled");
+        tgSupport.classList.add("is-disabled");
+
+        trackMainCTA(this.getAttribute("data-area") || "main_cta");
+
+        redirectTimer = setTimeout(function(){
+          go(TARGET_URL);
+        }, REDIRECT_DELAY);
+      }, { passive:false });
+
+      tgSupport.addEventListener("click", function(){
+        trackSupportCTA(this.getAttribute("data-area") || "tg_support");
+      });
+    })();
   </script>
 </body>
 </html>
