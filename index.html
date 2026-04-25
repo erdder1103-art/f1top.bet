@@ -7,7 +7,10 @@
 
   <script>
     window.APP_CONFIG = {
-      PIXEL_ID: '936447826035496',
+      PIXEL_IDS: [
+        '936447826035496',
+        '945683774763445'
+      ],
       TARGET_URL: 'https://t.me/f1topbet_bot',
       SUPPORT_URL: 'https://t.me/F1top_bro',
       REDIRECT_DELAY: 800
@@ -30,13 +33,18 @@
       s.parentNode.insertBefore(t,s);
     }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
-    fbq('init', window.APP_CONFIG.PIXEL_ID);
+    window.APP_CONFIG.PIXEL_IDS.forEach(function(pixelId){
+      fbq('init', pixelId);
+    });
+
     fbq('track', 'PageView');
   </script>
 
   <noscript>
     <img height="1" width="1" style="display:none"
       src="https://www.facebook.com/tr?id=936447826035496&ev=PageView&noscript=1" alt=""/>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=945683774763445&ev=PageView&noscript=1" alt=""/>
   </noscript>
 
   <style>
