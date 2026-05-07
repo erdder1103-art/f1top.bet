@@ -8,12 +8,17 @@
   <script>
     window.APP_CONFIG = {
       PIXEL_IDS: [
-        '936447826035496',
-        '945683774763445'
+        "936447826035496",
+        "945683774763445"
       ],
-      TARGET_URL: 'https://t.me/f1topbet_bot',
-      SUPPORT_URL: 'https://t.me/F1top_bro',
-      REDIRECT_DELAY: 800
+
+      CHAT_WIDGET_URL: "https://customer-chat-system-production.up.railway.app/widget.js?v=hua-ad-20260507",
+
+      CHAT_SITE: "f1top-10usdt-hua",
+      CHAT_TITLE: "F1-TOP 注册送10USDT体验金",
+      CHAT_CAMPAIGN: "华-广告",
+      CHAT_SOURCE_GROUP: "华-广告",
+      CHAT_SOURCE_LABEL: "华-注册送10USDT"
     };
 
     !function(f,b,e,v,n,t,s){
@@ -31,13 +36,13 @@
       t.src=v;
       s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s);
-    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
 
     window.APP_CONFIG.PIXEL_IDS.forEach(function(pixelId){
-      fbq('init', pixelId);
+      fbq("init", pixelId);
     });
 
-    fbq('track', 'PageView');
+    fbq("track", "PageView");
   </script>
 
   <noscript>
@@ -198,6 +203,22 @@
       filter:drop-shadow(0 6px 10px rgba(0,0,0,.25));
     }
 
+    .tg-fab::after {
+      content: "客服";
+      position: absolute;
+      left: 50%;
+      bottom: -20px;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.72);
+      color: #ffd966;
+      font-size: 12px;
+      font-weight: 800;
+      border: 1px solid rgba(255,217,102,.55);
+    }
+
     @keyframes tgBreathe{
       0%{transform:translateY(-50%) scale(1);opacity:.92;}
       50%{transform:translateY(-50%) scale(1.08);opacity:1;}
@@ -215,26 +236,41 @@
     <img src="./images/ip.png" class="ip" alt="ip" loading="eager">
 
     <div class="btn-wrap">
-      <a href="https://t.me/f1topbet_bot" class="cta-link" id="ctaBtn" data-area="main_cta" aria-label="Open Telegram Bot" rel="noopener">
+      <a href="javascript:void(0)"
+         class="cta-link"
+         id="ctaBtn"
+         data-area="main_cta"
+         aria-label="Open Online Support"
+         rel="noopener">
         <img src="./images/btn.png" class="btn-img" alt="CTA Button" loading="eager">
       </a>
     </div>
 
-    <a class="tg-fab" id="tgSupport" href="https://t.me/F1top_bro" target="_blank" rel="noopener" data-area="tg_support" aria-label="Telegram Support"></a>
+    <a class="tg-fab"
+       id="tgSupport"
+       href="javascript:void(0)"
+       rel="noopener"
+       data-area="tg_support"
+       aria-label="Online Support"></a>
   </div>
 
   <script>
     (function(){
-      var TARGET_URL = window.APP_CONFIG.TARGET_URL;
-      var REDIRECT_DELAY = window.APP_CONFIG.REDIRECT_DELAY;
+      var CHAT_WIDGET_URL = window.APP_CONFIG.CHAT_WIDGET_URL;
+      var CHAT_SITE = window.APP_CONFIG.CHAT_SITE || "f1top-10usdt-hua";
+      var CHAT_TITLE = window.APP_CONFIG.CHAT_TITLE || "F1-TOP 注册送10USDT体验金";
+      var CHAT_CAMPAIGN = window.APP_CONFIG.CHAT_CAMPAIGN || "华-广告";
+      var CHAT_SOURCE_GROUP = window.APP_CONFIG.CHAT_SOURCE_GROUP || "华-广告";
+      var CHAT_SOURCE_LABEL = window.APP_CONFIG.CHAT_SOURCE_LABEL || "华-注册送10USDT";
 
       var layer = document.getElementById("coinsLayer");
       var ctaBtn = document.getElementById("ctaBtn");
       var tgSupport = document.getElementById("tgSupport");
 
       var coinTimer = null;
-      var isRedirecting = false;
-      var redirectTimer = null;
+      var isOpening = false;
+      var widgetLoaded = false;
+      var widgetLoading = false;
 
       function spawnCoin() {
         var coin = document.createElement("div");
@@ -250,11 +286,15 @@
         coin.style.animationDuration = dur + "s, " + spinDur + "s";
 
         layer.appendChild(coin);
-        setTimeout(function(){ coin.remove(); }, dur * 1000 + 200);
+
+        setTimeout(function(){
+          if (coin && coin.parentNode) coin.parentNode.removeChild(coin);
+        }, dur * 1000 + 200);
       }
 
       function startCoins() {
         if (coinTimer) return;
+
         coinTimer = setInterval(function(){
           var n = 1 + Math.floor(Math.random() * 2);
           for (var i = 0; i < n; i++) spawnCoin();
@@ -269,6 +309,7 @@
 
       function createEventId(prefix){
         var id = "";
+
         if (window.crypto && typeof window.crypto.randomUUID === "function") {
           id = window.crypto.randomUUID();
         } else {
@@ -278,6 +319,7 @@
             return v.toString(16);
           });
         }
+
         return prefix + "_" + id;
       }
 
@@ -297,44 +339,97 @@
         }catch(e){}
       }
 
-      function trackMainCTA(area){
-        var leadParams = {
-          content_name: "telegram_bot_click",
-          content_category: "telegram_redirect",
-          contact_method: "telegram",
+      function trackSiteChat(area){
+        var params = {
+          content_name: "site_chat_open",
+          content_category: "onsite_support",
+          contact_method: "site_chat",
           click_area: area || "main_cta",
-          destination: "telegram_bot",
+          destination: "internal_chat",
+          source_site: CHAT_SITE,
+          source_title: CHAT_TITLE,
+          campaign: CHAT_CAMPAIGN,
+          source_group: CHAT_SOURCE_GROUP,
+          source_label: CHAT_SOURCE_LABEL,
           value: 1.00,
           currency: "USD"
         };
 
-        sendTrack("Lead", leadParams, { eventID: createEventId("lead") });
-        sendTrackCustom("TelegramClick", leadParams, { eventID: createEventId("telegramclick") });
+        sendTrack("Lead", params, { eventID: createEventId("lead") });
+        sendTrack("Contact", params, { eventID: createEventId("contact") });
+        sendTrackCustom("SiteChatOpen", params, { eventID: createEventId("site_chat_open") });
       }
 
-      function trackSupportCTA(area){
-        var contactParams = {
-          content_name: "telegram_support_click",
-          content_category: "telegram_redirect",
-          contact_method: "telegram",
-          click_area: area || "tg_support",
-          destination: "telegram_support"
+      function loadChatWidget(callback) {
+        if (widgetLoaded) {
+          callback();
+          return;
+        }
+
+        if (widgetLoading) {
+          var waitTimer = setInterval(function(){
+            if (widgetLoaded) {
+              clearInterval(waitTimer);
+              callback();
+            }
+          }, 80);
+          return;
+        }
+
+        widgetLoading = true;
+
+        var script = document.createElement("script");
+        script.src = CHAT_WIDGET_URL;
+        script.async = true;
+
+        script.setAttribute("data-site", CHAT_SITE);
+        script.setAttribute("data-title", CHAT_TITLE);
+        script.setAttribute("data-campaign", CHAT_CAMPAIGN);
+        script.setAttribute("data-source-group", CHAT_SOURCE_GROUP);
+        script.setAttribute("data-source-label", CHAT_SOURCE_LABEL);
+        script.setAttribute("data-auto-open", "false");
+        script.setAttribute("data-open-delay", "300");
+
+        script.onload = function(){
+          widgetLoaded = true;
+          widgetLoading = false;
+          callback();
         };
 
-        sendTrack("Contact", contactParams, { eventID: createEventId("contact") });
-        sendTrackCustom("TelegramSupportClick", contactParams, { eventID: createEventId("telegramsupport") });
+        script.onerror = function(){
+          widgetLoading = false;
+          resetState();
+          alert("客服聊天室載入失敗，請稍後再試。");
+        };
+
+        document.body.appendChild(script);
       }
 
-      function go(url){
-        window.location.href = url;
+      function openSiteChat(area) {
+        if (isOpening) return;
+
+        isOpening = true;
+
+        ctaBtn.classList.add("is-disabled");
+        tgSupport.classList.add("is-disabled");
+
+        trackSiteChat(area);
+
+        loadChatWidget(function(){
+          setTimeout(function(){
+            if (window.CustomerChat && typeof window.CustomerChat.open === "function") {
+              window.CustomerChat.open();
+            } else {
+              alert("聊天室尚未載入完成，請稍等 1 秒後再點一次。");
+            }
+
+            resetState();
+          }, 150);
+        });
       }
 
       function resetState(){
-        isRedirecting = false;
-        if (redirectTimer) {
-          clearTimeout(redirectTimer);
-          redirectTimer = null;
-        }
+        isOpening = false;
         ctaBtn.classList.remove("is-disabled");
         tgSupport.classList.remove("is-disabled");
       }
@@ -348,27 +443,18 @@
 
       window.addEventListener("pageshow", function(event){
         if (event.persisted) resetState();
-        else isRedirecting = false;
+        else isOpening = false;
       });
 
       ctaBtn.addEventListener("click", function(e){
         e.preventDefault();
-        if (isRedirecting) return;
-
-        isRedirecting = true;
-        ctaBtn.classList.add("is-disabled");
-        tgSupport.classList.add("is-disabled");
-
-        trackMainCTA(this.getAttribute("data-area") || "main_cta");
-
-        redirectTimer = setTimeout(function(){
-          go(TARGET_URL);
-        }, REDIRECT_DELAY);
+        openSiteChat(this.getAttribute("data-area") || "main_cta");
       }, { passive:false });
 
-      tgSupport.addEventListener("click", function(){
-        trackSupportCTA(this.getAttribute("data-area") || "tg_support");
-      });
+      tgSupport.addEventListener("click", function(e){
+        e.preventDefault();
+        openSiteChat(this.getAttribute("data-area") || "tg_support");
+      }, { passive:false });
     })();
   </script>
 </body>
