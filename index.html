@@ -1,62 +1,35 @@
 <!doctype html>
-<html lang="zh-CN">
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>F1TOP-小葵专属</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
   <script>
-    window.APP_CONFIG = {
-      PIXEL_IDS: [
-        "936447826035496",
-        "945683774763445"
-      ],
-
-      BTN_TELEGRAM_URL: "https://t.me/f1topbet_bot",
-      SUPPORT_TELEGRAM_URL: "https://t.me/F1top_bro",
-
-      SITE_NAME: "f1top-10usdt-hua",
-      PAGE_TITLE: "F1-TOP 注册送10USDT体验金",
-      CAMPAIGN: "华-广告",
-      SOURCE_GROUP: "华-广告",
-      SOURCE_LABEL: "华-注册送10USDT"
-    };
+    var PIXEL_IDS = ["936447826035496", "945683774763445"];
+    var BTN_URL = "https://t.me/f1topbet_bot";
+    var SUPPORT_URL = "https://t.me/F1top_bro";
 
     !function(f,b,e,v,n,t,s){
-      if(f.fbq) return;
-      n=f.fbq=function(){
-        n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments);
-      };
-      if(!f._fbq) f._fbq=n;
-      n.push=n;
-      n.loaded=!0;
-      n.version='2.0';
-      n.queue=[];
-      t=b.createElement(e);
-      t.async=!0;
-      t.src=v;
-      s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s);
-    }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+      if(f.fbq)return;
+      n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];
+      t=b.createElement(e);t.async=!0;t.src=v;
+      s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
+    }(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
 
-    window.APP_CONFIG.PIXEL_IDS.forEach(function(pixelId){
-      fbq("init", pixelId);
-    });
-
+    PIXEL_IDS.forEach(function(id){ fbq("init", id); });
     fbq("track", "PageView");
   </script>
 
   <noscript>
-    <img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=936447826035496&ev=PageView&noscript=1" alt=""/>
-    <img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=945683774763445&ev=PageView&noscript=1" alt=""/>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=936447826035496&ev=PageView&noscript=1">
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=945683774763445&ev=PageView&noscript=1">
   </noscript>
 
   <style>
-    :root { --max-w: 420px; }
-    * { box-sizing: border-box; }
-
+    :root{--max-w:420px}
+    *{box-sizing:border-box}
     body{
       margin:0;
       background:#000;
@@ -65,9 +38,8 @@
       align-items:center;
       min-height:100vh;
       min-height:100svh;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans TC",Arial,sans-serif;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
     }
-
     .stage{
       width:min(100vw,var(--max-w));
       aspect-ratio:9/16;
@@ -76,16 +48,11 @@
       border-radius:20px;
       background:#000;
     }
-
     .bg{
       position:absolute;
       inset:0;
       background:url("./images/bg.jpg") center/cover no-repeat;
-      z-index:0;
-      user-select:none;
-      -webkit-user-drag:none;
     }
-
     .coins-layer{
       position:absolute;
       inset:0;
@@ -93,94 +60,69 @@
       overflow:hidden;
       z-index:2;
     }
-
-    .logo{
-      position:absolute;
-      top:-10px;
-      left:-10px;
-      width:150px;
-      z-index:6;
-      pointer-events:none;
+    .logo,.ip,.btn-img{
       user-select:none;
       -webkit-user-drag:none;
     }
-
+    .logo{
+      position:absolute;
+      top:5px;
+      left:5px;
+      width:200px;
+      z-index:6;
+      pointer-events:none;
+    }
     .ip{
       position:absolute;
-      top:-5%;
+      top:15%;
       left:50%;
       transform:translateX(-50%);
       width:90%;
       max-width:360px;
       z-index:4;
       pointer-events:none;
-      user-select:none;
-      -webkit-user-drag:none;
     }
-
     .btn-wrap{
       position:absolute;
-      bottom:-90px;
+      bottom:50px;
       left:50%;
       transform:translateX(-50%);
-      width:85%;
-      max-width:350px;
+      width:1005%;
+      max-width:550px;
       z-index:10;
     }
-
     .cta-link{
       display:block;
       width:100%;
-      text-decoration:none;
-      -webkit-tap-highlight-color:transparent;
-      outline:none;
       animation:breatheGlow 1.6s ease-in-out infinite;
+      -webkit-tap-highlight-color:transparent;
     }
-
     .btn-img{
       width:100%;
       display:block;
       cursor:pointer;
-      transition:transform .12s ease, opacity .12s ease;
-      user-select:none;
-      -webkit-user-drag:none;
+      transition:transform .12s ease,opacity .12s ease;
     }
-
-    .cta-link:active .btn-img{
-      transform:scale(0.97);
-    }
-
-    .cta-link.is-disabled,
-    .tg-fab.is-disabled{
-      pointer-events:none;
-      opacity:.82;
-    }
+    .cta-link:active .btn-img{transform:scale(.97)}
+    .is-disabled{pointer-events:none;opacity:.82}
 
     @keyframes breatheGlow{
-      0%{filter:drop-shadow(0 0 0 rgba(255,215,0,0));transform:translateX(0) scale(1);}
-      50%{filter:drop-shadow(0 0 18px rgba(255,215,0,.55));transform:translateX(0) scale(1.02);}
-      100%{filter:drop-shadow(0 0 0 rgba(255,215,0,0));transform:translateX(0) scale(1);}
+      0%,100%{filter:drop-shadow(0 0 0 rgba(255,215,0,0));transform:scale(1)}
+      50%{filter:drop-shadow(0 0 18px rgba(255,215,0,.55));transform:scale(1.02)}
     }
-
     .coin{
       position:absolute;
       top:-12%;
       width:var(--size);
       height:var(--size);
       border-radius:50%;
-      background:radial-gradient(circle at 30% 30%, #fff3b0 0%, #ffd166 25%, #f4b400 55%, #c98a00 100%);
+      background:radial-gradient(circle at 30% 30%,#fff3b0 0%,#ffd166 25%,#f4b400 55%,#c98a00 100%);
       box-shadow:0 10px 18px rgba(0,0,0,.25);
       opacity:.95;
-      animation:fall linear forwards, spin linear infinite;
+      animation:fall linear forwards,spin linear infinite;
     }
-
-    @keyframes fall{
-      to{transform:translate3d(0,130vh,0) rotate(360deg);opacity:0;}
-    }
-
-    @keyframes spin{
-      to{ rotate:360deg; }
-    }
+    @keyframes fall{to{transform:translate3d(0,130vh,0) rotate(360deg);opacity:0}}
+    @keyframes spin{to{rotate:360deg}}
 
     .tg-fab{
       position:absolute;
@@ -194,8 +136,7 @@
       animation:tgBreathe 1.6s ease-in-out infinite;
       -webkit-tap-highlight-color:transparent;
     }
-
-    .tg-fab::before{
+    .tg-fab:before{
       content:"";
       width:52px;
       height:52px;
@@ -203,197 +144,84 @@
       background:url("./images/tg.png") center/contain no-repeat;
       filter:drop-shadow(0 6px 10px rgba(0,0,0,.25));
     }
-
-    .tg-fab::after {
-      content: "客服";
-      position: absolute;
-      left: 50%;
-      bottom: -20px;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: rgba(0,0,0,.72);
-      color: #ffd966;
-      font-size: 12px;
-      font-weight: 800;
-      border: 1px solid rgba(255,217,102,.55);
+    .tg-fab:after{
+      content:"客服";
+      position:absolute;
+      left:50%;
+      bottom:-20px;
+      transform:translateX(-50%);
+      white-space:nowrap;
+      padding:3px 8px;
+      border-radius:999px;
+      background:rgba(0,0,0,.72);
+      color:#ffd966;
+      font-size:12px;
+      font-weight:800;
+      border:1px solid rgba(255,217,102,.55);
     }
-
     @keyframes tgBreathe{
-      0%{transform:translateY(-50%) scale(1);opacity:.92;}
-      50%{transform:translateY(-50%) scale(1.08);opacity:1;}
-      100%{transform:translateY(-50%) scale(1);opacity:.92;}
+      0%,100%{transform:translateY(-50%) scale(1);opacity:.92}
+      50%{transform:translateY(-50%) scale(1.08);opacity:1}
     }
   </style>
 </head>
-
 <body>
   <div class="stage">
     <div class="bg"></div>
     <div class="coins-layer" id="coinsLayer"></div>
 
-    <img src="./images/logo.png" class="logo" alt="logo" loading="eager">
-    <img src="./images/ip.png" class="ip" alt="ip" loading="eager">
+    <img src="./images/logo.png" class="logo">
+    <img src="./images/ip.png" class="ip">
 
     <div class="btn-wrap">
-      <a href="https://t.me/f1topbet_bot"
-         class="cta-link"
-         id="ctaBtn"
-         data-area="main_cta"
-         aria-label="Open Telegram Bot"
-         rel="noopener">
-        <img src="./images/btn.png" class="btn-img" alt="CTA Button" loading="eager">
+      <a href="https://t.me/f1topbet_bot" class="cta-link" id="ctaBtn" data-area="main_cta" rel="noopener">
+        <img src="./images/btn.png" class="btn-img">
       </a>
     </div>
 
-    <a class="tg-fab"
-       id="tgSupport"
-       href="https://t.me/F1top_bro"
-       rel="noopener"
-       data-area="tg_support"
-       aria-label="Telegram Support"></a>
+    <a class="tg-fab" id="tgSupport" href="https://t.me/F1top_bro" rel="noopener" data-area="tg_support"></a>
   </div>
 
   <script>
     (function(){
-      var BTN_TELEGRAM_URL = window.APP_CONFIG.BTN_TELEGRAM_URL || "https://t.me/f1topbet_bot";
-      var SUPPORT_TELEGRAM_URL = window.APP_CONFIG.SUPPORT_TELEGRAM_URL || "https://t.me/F1top_bro";
-
-      var SITE_NAME = window.APP_CONFIG.SITE_NAME || "f1top-10usdt-hua";
-      var PAGE_TITLE = window.APP_CONFIG.PAGE_TITLE || "F1-TOP 注册送10USDT体验金";
-      var CAMPAIGN = window.APP_CONFIG.CAMPAIGN || "华-广告";
-      var SOURCE_GROUP = window.APP_CONFIG.SOURCE_GROUP || "华-广告";
-      var SOURCE_LABEL = window.APP_CONFIG.SOURCE_LABEL || "华-注册送10USDT";
-
       var layer = document.getElementById("coinsLayer");
       var ctaBtn = document.getElementById("ctaBtn");
       var tgSupport = document.getElementById("tgSupport");
-
       var coinTimer = null;
       var isOpening = false;
 
-      ctaBtn.href = BTN_TELEGRAM_URL;
-      tgSupport.href = SUPPORT_TELEGRAM_URL;
+      ctaBtn.href = BTN_URL;
+      tgSupport.href = SUPPORT_URL;
 
-      function spawnCoin() {
-        if (!layer) return;
-
-        var coin = document.createElement("div");
-        coin.className = "coin";
-
-        var size = Math.floor(10 + Math.random() * 18);
-        var left = Math.random() * 100;
-        var dur = 6.5 + Math.random() * 4.5;
-        var spinDur = 0.8 + Math.random() * 1.2;
-
-        coin.style.setProperty("--size", size + "px");
-        coin.style.left = left + "%";
-        coin.style.animationDuration = dur + "s, " + spinDur + "s";
-
-        layer.appendChild(coin);
-
-        setTimeout(function(){
-          if (coin && coin.parentNode) coin.parentNode.removeChild(coin);
-        }, dur * 1000 + 200);
+      function eventId(prefix){
+        if(window.crypto && crypto.randomUUID) return prefix + "_" + crypto.randomUUID();
+        return prefix + "_" + Date.now() + "_" + Math.random().toString(16).slice(2);
       }
 
-      function startCoins() {
-        if (coinTimer) return;
-
-        coinTimer = setInterval(function(){
-          var n = 1 + Math.floor(Math.random() * 2);
-          for (var i = 0; i < n; i++) spawnCoin();
-        }, 900);
-      }
-
-      function stopCoins() {
-        if (!coinTimer) return;
-        clearInterval(coinTimer);
-        coinTimer = null;
-      }
-
-      function createEventId(prefix){
-        var id = "";
-
-        if (window.crypto && typeof window.crypto.randomUUID === "function") {
-          id = window.crypto.randomUUID();
-        } else {
-          id = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c){
-            var r = Math.random() * 16 | 0;
-            var v = c === "x" ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-          });
-        }
-
-        return prefix + "_" + id;
-      }
-
-      function sendTrack(eventName, params, options){
-        try{
-          if (typeof fbq === "function") {
-            fbq("track", eventName, params || {}, options || {});
-          }
-        }catch(e){}
-      }
-
-      function sendTrackCustom(eventName, params, options){
-        try{
-          if (typeof fbq === "function") {
-            fbq("trackCustom", eventName, params || {}, options || {});
-          }
-        }catch(e){}
-      }
-
-      function getDestinationByArea(area) {
-        if (area === "tg_support") {
-          return "telegram_support";
-        }
-
-        return "telegram_bot";
-      }
-
-      function trackTelegramOpen(area, url){
-        var destination = getDestinationByArea(area);
-
+      function track(area,url){
+        if(typeof fbq !== "function") return;
         var params = {
-          content_name: destination + "_open",
-          content_category: "telegram",
-          contact_method: "telegram",
-          click_area: area || "main_cta",
-          destination: destination,
-          destination_url: url,
-          source_site: SITE_NAME,
-          source_title: PAGE_TITLE,
-          campaign: CAMPAIGN,
-          source_group: SOURCE_GROUP,
-          source_label: SOURCE_LABEL,
-          value: 1.00,
-          currency: "USD"
+          content_category:"telegram",
+          contact_method:"telegram",
+          click_area:area,
+          destination:area === "tg_support" ? "telegram_support" : "telegram_bot",
+          destination_url:url,
+          value:1,
+          currency:"USD"
         };
-
-        sendTrack("Lead", params, { eventID: createEventId("lead") });
-        sendTrack("Contact", params, { eventID: createEventId("contact") });
-        sendTrackCustom("TelegramOpen", params, { eventID: createEventId("telegram_open") });
+        fbq("track","Lead",params,{eventID:eventId("lead")});
+        fbq("track","Contact",params,{eventID:eventId("contact")});
+        fbq("trackCustom","TelegramOpen",params,{eventID:eventId("telegram_open")});
       }
 
-      function openTelegram(area, url) {
-        if (isOpening) return;
-
+      function openTelegram(area,url){
+        if(isOpening) return;
         isOpening = true;
-
         ctaBtn.classList.add("is-disabled");
         tgSupport.classList.add("is-disabled");
-
-        trackTelegramOpen(area, url);
-
-        setTimeout(function(){
-          window.location.href = url;
-        }, 180);
-
-        setTimeout(function(){
-          resetState();
-        }, 1500);
+        track(area,url);
+        setTimeout(function(){ window.location.href = url; },180);
+        setTimeout(resetState,1500);
       }
 
       function resetState(){
@@ -402,27 +230,43 @@
         tgSupport.classList.remove("is-disabled");
       }
 
+      function spawnCoin(){
+        if(!layer) return;
+        var coin = document.createElement("div");
+        var dur = 6.5 + Math.random() * 4.5;
+        coin.className = "coin";
+        coin.style.setProperty("--size", Math.floor(10 + Math.random() * 18) + "px");
+        coin.style.left = Math.random() * 100 + "%";
+        coin.style.animationDuration = dur + "s," + (0.8 + Math.random() * 1.2) + "s";
+        layer.appendChild(coin);
+        setTimeout(function(){ coin.remove(); }, dur * 1000 + 200);
+      }
+
+      function startCoins(){
+        if(coinTimer) return;
+        coinTimer = setInterval(function(){
+          for(var i=0,n=1+Math.floor(Math.random()*2);i<n;i++) spawnCoin();
+        },900);
+      }
+
+      function stopCoins(){
+        clearInterval(coinTimer);
+        coinTimer = null;
+      }
+
       startCoins();
+      document.addEventListener("visibilitychange",function(){document.hidden ? stopCoins() : startCoins();});
+      window.addEventListener("pageshow",function(e){e.persisted ? resetState() : isOpening=false;});
 
-      document.addEventListener("visibilitychange", function(){
-        if (document.hidden) stopCoins();
-        else startCoins();
+      ctaBtn.addEventListener("click",function(e){
+        e.preventDefault();
+        openTelegram(this.dataset.area || "main_cta",BTN_URL);
       });
 
-      window.addEventListener("pageshow", function(event){
-        if (event.persisted) resetState();
-        else isOpening = false;
+      tgSupport.addEventListener("click",function(e){
+        e.preventDefault();
+        openTelegram(this.dataset.area || "tg_support",SUPPORT_URL);
       });
-
-      ctaBtn.addEventListener("click", function(e){
-        e.preventDefault();
-        openTelegram(this.getAttribute("data-area") || "main_cta", BTN_TELEGRAM_URL);
-      }, { passive:false });
-
-      tgSupport.addEventListener("click", function(e){
-        e.preventDefault();
-        openTelegram(this.getAttribute("data-area") || "tg_support", SUPPORT_TELEGRAM_URL);
-      }, { passive:false });
     })();
   </script>
 </body>
