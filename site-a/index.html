@@ -1,0 +1,261 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+
+  <script>
+    var PIXEL_IDS = ["936447826035496", "945683774763445"];
+    var BTN_URL = "https://s.f1.top/r?p=h2pEYZ5DDuYq";
+    var BTN1_URL = "https://t.me/F1top_bro";
+
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;
+      n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];
+      t=b.createElement(e);t.async=!0;t.src=v;
+      s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
+    }(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
+
+    PIXEL_IDS.forEach(function(id){fbq("init",id)});
+    fbq("track","PageView");
+  </script>
+
+  <noscript>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=936447826035496&ev=PageView&noscript=1">
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=945683774763445&ev=PageView&noscript=1">
+  </noscript>
+
+  <style>
+    :root{
+      --stage-max-width:420px;
+
+      --logo-top:5px;
+      --logo-left:5px;
+      --logo-width:200px;
+
+      --ip-top:12%;
+      --ip-left:50%;
+      --ip-width:90%;
+      --ip-max-width:360px;
+
+      --btn-bottom:200px;
+      --btn-left:50%;
+      --btn-width:100%;
+      --btn-max-width:550px;
+
+      --btn1-bottom:90px;
+      --btn1-left:50%;
+      --btn1-width:100%;
+      --btn1-max-width:550px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:#000;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+      min-height:100svh;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    }
+    .stage{
+      width:min(100vw,var(--stage-max-width));
+      aspect-ratio:9/16;
+      position:relative;
+      overflow:hidden;
+      border-radius:20px;
+      background:#000;
+    }
+    .bg{
+      position:absolute;
+      inset:0;
+      background:url("./images/bg.jpg") center/cover no-repeat;
+      z-index:0;
+    }
+    .coins-layer{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:2;
+    }
+    .logo,.ip,.btn-img{
+      user-select:none;
+      -webkit-user-drag:none;
+    }
+    .logo{
+      position:absolute;
+      top:var(--logo-top);
+      left:var(--logo-left);
+      width:var(--logo-width);
+      z-index:6;
+      pointer-events:none;
+    }
+    .ip{
+      position:absolute;
+      top:var(--ip-top);
+      left:var(--ip-left);
+      transform:translateX(-50%);
+      width:var(--ip-width);
+      max-width:var(--ip-max-width);
+      z-index:4;
+      pointer-events:none;
+    }
+    .btn-wrap,.btn1-wrap{
+      position:absolute;
+      transform:translateX(-50%);
+      z-index:10;
+    }
+    .btn-wrap{
+      bottom:var(--btn-bottom);
+      left:var(--btn-left);
+      width:var(--btn-width);
+      max-width:var(--btn-max-width);
+    }
+    .btn1-wrap{
+      bottom:var(--btn1-bottom);
+      left:var(--btn1-left);
+      width:var(--btn1-width);
+      max-width:var(--btn1-max-width);
+    }
+    .btn-link{
+      display:block;
+      width:100%;
+      animation:breatheGlow 1.6s ease-in-out infinite;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .btn-img{
+      width:100%;
+      display:block;
+      cursor:pointer;
+      transition:transform .12s ease,opacity .12s ease;
+    }
+    .btn-link:active .btn-img{transform:scale(.97)}
+    .is-disabled{pointer-events:none;opacity:.82}
+    @keyframes breatheGlow{
+      0%,100%{filter:drop-shadow(0 0 0 rgba(255,215,0,0));transform:scale(1)}
+      50%{filter:drop-shadow(0 0 18px rgba(255,215,0,.55));transform:scale(1.02)}
+    }
+    .coin{
+      position:absolute;
+      top:-12%;
+      width:var(--size);
+      height:var(--size);
+      border-radius:50%;
+      background:radial-gradient(circle at 30% 30%,#fff3b0 0%,#ffd166 25%,#f4b400 55%,#c98a00 100%);
+      box-shadow:0 10px 18px rgba(0,0,0,.25);
+      opacity:.95;
+      animation:fall linear forwards,spin linear infinite;
+    }
+    @keyframes fall{to{transform:translate3d(0,130vh,0) rotate(360deg);opacity:0}}
+    @keyframes spin{to{rotate:360deg}}
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="bg"></div>
+    <div class="coins-layer" id="coinsLayer"></div>
+
+    <img src="./images/logo.png" class="logo">
+    <img src="./images/ip.png" class="ip">
+
+    <div class="btn-wrap">
+      <a href="https://s.f1.top/r?p=h2pEYZ5DDuYq" class="btn-link" id="btn" data-event="Lead" data-area="btn" rel="noopener">
+        <img src="./images/btn.png" class="btn-img">
+      </a>
+    </div>
+
+    <div class="btn1-wrap">
+      <a href="https://t.me/F1top_bro" class="btn-link" id="btn1" data-event="Contact" data-area="btn1" rel="noopener">
+        <img src="./images/btn1.png" class="btn-img">
+      </a>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      var layer = document.getElementById("coinsLayer");
+      var btn = document.getElementById("btn");
+      var btn1 = document.getElementById("btn1");
+      var buttons = [btn,btn1];
+      var coinTimer = null;
+      var isOpening = false;
+
+      btn.href = BTN_URL;
+      btn1.href = BTN1_URL;
+
+      function eventId(prefix){
+        if(window.crypto&&crypto.randomUUID)return prefix+"_"+crypto.randomUUID();
+        return prefix+"_"+Date.now()+"_"+Math.random().toString(16).slice(2);
+      }
+
+      function track(name,area,url){
+        if(typeof fbq!=="function")return;
+        var params = {
+          content_category:"button",
+          click_area:area,
+          destination_url:url,
+          value:1,
+          currency:"USD"
+        };
+        fbq("track",name,params,{eventID:eventId(name.toLowerCase())});
+        fbq("trackCustom","ButtonClick",params,{eventID:eventId("button_click")});
+      }
+
+      function openLink(el){
+        if(isOpening)return;
+        isOpening = true;
+        buttons.forEach(function(item){item.classList.add("is-disabled")});
+        track(el.dataset.event,el.dataset.area,el.href);
+        setTimeout(function(){window.location.href=el.href},180);
+        setTimeout(resetState,1500);
+      }
+
+      function resetState(){
+        isOpening = false;
+        buttons.forEach(function(item){item.classList.remove("is-disabled")});
+      }
+
+      function spawnCoin(){
+        if(!layer)return;
+        var coin = document.createElement("div");
+        var dur = 6.5 + Math.random() * 4.5;
+        coin.className = "coin";
+        coin.style.setProperty("--size",Math.floor(10 + Math.random() * 18) + "px");
+        coin.style.left = Math.random() * 100 + "%";
+        coin.style.animationDuration = dur + "s," + (0.8 + Math.random() * 1.2) + "s";
+        layer.appendChild(coin);
+        setTimeout(function(){coin.remove()},dur * 1000 + 200);
+      }
+
+      function startCoins(){
+        if(coinTimer)return;
+        coinTimer = setInterval(function(){
+          for(var i=0,n=1+Math.floor(Math.random()*2);i<n;i++)spawnCoin();
+        },900);
+      }
+
+      function stopCoins(){
+        clearInterval(coinTimer);
+        coinTimer = null;
+      }
+
+      startCoins();
+      document.addEventListener("visibilitychange",function(){document.hidden ? stopCoins() : startCoins()});
+      window.addEventListener("pageshow",function(e){e.persisted ? resetState() : isOpening=false});
+
+      buttons.forEach(function(el){
+        el.addEventListener("click",function(e){
+          e.preventDefault();
+          openLink(this);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
