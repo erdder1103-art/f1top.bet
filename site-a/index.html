@@ -266,7 +266,7 @@
       <a href="https://t.me/F1top_bro"
          class="btn-link"
          id="btn1"
-         data-area="telegram_btn"
+         data-area="purchase_btn"
          rel="noopener">
         <img src="./images/btn1.png" class="btn-img" alt="">
       </a>
@@ -319,7 +319,7 @@
           action_source: "website",
           content_name: PRODUCT_NAME,
           content_category: PRODUCT_CATEGORY,
-          contact_method: area === "telegram_btn" ? "telegram" : "redirect",
+          contact_method: "redirect",
           click_area: area,
           destination_url: url,
           event_source_url: window.location.href
@@ -368,10 +368,10 @@
         var buttonClickEventID = eventId("button_click");
 
         /*
-          主按鈕事件：
-          Lead：給轉換優化
-          AddToCart：給目錄配對率
-          ButtonClick：自訂觀察點擊
+          Btn 主按鈕：
+          Lead：潛在用戶
+          AddToCart：加入購物車
+          ButtonClick：自訂按鈕點擊
         */
         fbq("track", "Lead", lead, {
           eventID: leadEventID
@@ -385,37 +385,42 @@
           eventID: buttonClickEventID
         });
 
-        /*
-          備援送出：
-          Network 會更容易看到 facebook.com/tr
-        */
         sendFallbackAll("Lead", lead, leadEventID);
         sendFallbackAll("AddToCart", product, addToCartEventID);
         sendFallbackAll("ButtonClick", lead, buttonClickEventID);
       }
 
-      function trackTelegramButton(area,url){
+      function trackPurchaseButton(area,url){
         if(typeof fbq !== "function")return;
 
-        var params = leadParams(area,url);
+        var product = productParams(area,url);
+        var lead = leadParams(area,url);
 
-        var contactEventID = eventId("contact");
+        var leadEventID = eventId("lead");
+        var purchaseEventID = eventId("purchase");
         var buttonClickEventID = eventId("button_click");
 
         /*
-          Telegram 按鈕事件：
-          只送 Contact，不送 AddToCart / Purchase
+          btn1 按鈕：
+          Lead：潛在用戶
+          Purchase：購買
+          ButtonClick：自訂按鈕點擊
         */
-        fbq("track", "Contact", params, {
-          eventID: contactEventID
+        fbq("track", "Lead", lead, {
+          eventID: leadEventID
         });
 
-        fbq("trackCustom", "ButtonClick", params, {
+        fbq("track", "Purchase", product, {
+          eventID: purchaseEventID
+        });
+
+        fbq("trackCustom", "ButtonClick", product, {
           eventID: buttonClickEventID
         });
 
-        sendFallbackAll("Contact", params, contactEventID);
-        sendFallbackAll("ButtonClick", params, buttonClickEventID);
+        sendFallbackAll("Lead", lead, leadEventID);
+        sendFallbackAll("Purchase", product, purchaseEventID);
+        sendFallbackAll("ButtonClick", product, buttonClickEventID);
       }
 
       function openLink(el){
@@ -437,7 +442,7 @@
         }
 
         if(el.id === "btn1"){
-          trackTelegramButton(area,url);
+          trackPurchaseButton(area,url);
         }
 
         /*
