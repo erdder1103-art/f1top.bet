@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html>
 <head>
@@ -8,20 +9,62 @@
 
   <script>
     var PIXEL_IDS = ["936447826035496", "945683774763445"];
+
     var BTN_URL = "https://s.f1.top/r?p=h2pEYZ5DDuYq";
     var BTN1_URL = "https://t.me/F1top_bro";
 
+    /*
+      Meta 目錄商品資料
+      content_ids 必須對應 Meta 商品目錄裡的「內容編號」
+    */
+    var PRODUCT_ID = "6egayzu4ad";
+    var PRODUCT_NAME = "新注册享10U体验金";
+    var PRODUCT_CATEGORY = "promotion";
+    var PRODUCT_VALUE = 70;
+    var PRODUCT_CURRENCY = "CNY";
+
     !function(f,b,e,v,n,t,s){
       if(f.fbq)return;
-      n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      n=f.fbq=function(){
+        n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments);
+      };
       if(!f._fbq)f._fbq=n;
-      n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];
-      t=b.createElement(e);t.async=!0;t.src=v;
-      s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
+      n.push=n;
+      n.loaded=!0;
+      n.version="2.0";
+      n.queue=[];
+      t=b.createElement(e);
+      t.async=!0;
+      t.src=v;
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s);
     }(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
 
-    PIXEL_IDS.forEach(function(id){fbq("init",id)});
-    fbq("track","PageView");
+    PIXEL_IDS.forEach(function(id){
+      fbq("init", id);
+    });
+
+    fbq("track", "PageView");
+
+    /*
+      目錄配對修復：
+      進站即送 ViewContent，讓 Meta 知道這個頁面對應哪個目錄商品
+    */
+    fbq("track", "ViewContent", {
+      content_ids: [PRODUCT_ID],
+      content_type: "product",
+      content_name: PRODUCT_NAME,
+      content_category: PRODUCT_CATEGORY,
+      contents: [
+        {
+          id: PRODUCT_ID,
+          quantity: 1,
+          item_price: PRODUCT_VALUE
+        }
+      ],
+      value: PRODUCT_VALUE,
+      currency: PRODUCT_CURRENCY
+    });
   </script>
 
   <noscript>
@@ -52,7 +95,11 @@
       --btn1-width:100%;
       --btn1-max-width:550px;
     }
-    *{box-sizing:border-box}
+
+    *{
+      box-sizing:border-box;
+    }
+
     body{
       margin:0;
       background:#000;
@@ -63,6 +110,7 @@
       min-height:100svh;
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
     }
+
     .stage{
       width:min(100vw,var(--stage-max-width));
       aspect-ratio:9/16;
@@ -71,12 +119,14 @@
       border-radius:20px;
       background:#000;
     }
+
     .bg{
       position:absolute;
       inset:0;
       background:url("./images/bg.jpg") center/cover no-repeat;
       z-index:0;
     }
+
     .coins-layer{
       position:absolute;
       inset:0;
@@ -84,10 +134,14 @@
       overflow:hidden;
       z-index:2;
     }
-    .logo,.ip,.btn-img{
+
+    .logo,
+    .ip,
+    .btn-img{
       user-select:none;
       -webkit-user-drag:none;
     }
+
     .logo{
       position:absolute;
       top:var(--logo-top);
@@ -96,6 +150,7 @@
       z-index:6;
       pointer-events:none;
     }
+
     .ip{
       position:absolute;
       top:var(--ip-top);
@@ -106,41 +161,62 @@
       z-index:4;
       pointer-events:none;
     }
-    .btn-wrap,.btn1-wrap{
+
+    .btn-wrap,
+    .btn1-wrap{
       position:absolute;
       transform:translateX(-50%);
       z-index:10;
     }
+
     .btn-wrap{
       bottom:var(--btn-bottom);
       left:var(--btn-left);
       width:var(--btn-width);
       max-width:var(--btn-max-width);
     }
+
     .btn1-wrap{
       bottom:var(--btn1-bottom);
       left:var(--btn1-left);
       width:var(--btn1-width);
       max-width:var(--btn1-max-width);
     }
+
     .btn-link{
       display:block;
       width:100%;
       animation:breatheGlow 1.6s ease-in-out infinite;
       -webkit-tap-highlight-color:transparent;
     }
+
     .btn-img{
       width:100%;
       display:block;
       cursor:pointer;
       transition:transform .12s ease,opacity .12s ease;
     }
-    .btn-link:active .btn-img{transform:scale(.97)}
-    .is-disabled{pointer-events:none;opacity:.82}
-    @keyframes breatheGlow{
-      0%,100%{filter:drop-shadow(0 0 0 rgba(255,215,0,0));transform:scale(1)}
-      50%{filter:drop-shadow(0 0 18px rgba(255,215,0,.55));transform:scale(1.02)}
+
+    .btn-link:active .btn-img{
+      transform:scale(.97);
     }
+
+    .is-disabled{
+      pointer-events:none;
+      opacity:.82;
+    }
+
+    @keyframes breatheGlow{
+      0%,100%{
+        filter:drop-shadow(0 0 0 rgba(255,215,0,0));
+        transform:scale(1);
+      }
+      50%{
+        filter:drop-shadow(0 0 18px rgba(255,215,0,.55));
+        transform:scale(1.02);
+      }
+    }
+
     .coin{
       position:absolute;
       top:-12%;
@@ -152,27 +228,47 @@
       opacity:.95;
       animation:fall linear forwards,spin linear infinite;
     }
-    @keyframes fall{to{transform:translate3d(0,130vh,0) rotate(360deg);opacity:0}}
-    @keyframes spin{to{rotate:360deg}}
+
+    @keyframes fall{
+      to{
+        transform:translate3d(0,130vh,0) rotate(360deg);
+        opacity:0;
+      }
+    }
+
+    @keyframes spin{
+      to{
+        rotate:360deg;
+      }
+    }
   </style>
 </head>
+
 <body>
   <div class="stage">
     <div class="bg"></div>
     <div class="coins-layer" id="coinsLayer"></div>
 
-    <img src="./images/logo.png" class="logo">
-    <img src="./images/ip.png" class="ip">
+    <img src="./images/logo.png" class="logo" alt="">
+    <img src="./images/ip.png" class="ip" alt="">
 
     <div class="btn-wrap">
-      <a href="https://s.f1.top/r?p=h2pEYZ5DDuYq" class="btn-link" id="btn" data-event="Lead" data-area="btn" rel="noopener">
-        <img src="./images/btn.png" class="btn-img">
+      <a href="https://s.f1.top/r?p=h2pEYZ5DDuYq"
+         class="btn-link"
+         id="btn"
+         data-area="main_btn"
+         rel="noopener">
+        <img src="./images/btn.png" class="btn-img" alt="">
       </a>
     </div>
 
     <div class="btn1-wrap">
-      <a href="https://t.me/F1top_bro" class="btn-link" id="btn1" data-event="Contact" data-area="btn1" rel="noopener">
-        <img src="./images/btn1.png" class="btn-img">
+      <a href="https://t.me/F1top_bro"
+         class="btn-link"
+         id="btn1"
+         data-area="telegram_btn"
+         rel="noopener">
+        <img src="./images/btn1.png" class="btn-img" alt="">
       </a>
     </div>
   </div>
@@ -190,53 +286,205 @@
       btn1.href = BTN1_URL;
 
       function eventId(prefix){
-        if(window.crypto&&crypto.randomUUID)return prefix+"_"+crypto.randomUUID();
-        return prefix+"_"+Date.now()+"_"+Math.random().toString(16).slice(2);
+        if(window.crypto && typeof crypto.randomUUID === "function"){
+          return prefix + "_" + crypto.randomUUID();
+        }
+
+        return prefix + "_" + Date.now() + "_" + Math.random().toString(16).slice(2);
       }
 
-      function track(name,area,url){
-        if(typeof fbq!=="function")return;
-        var params = {
-          content_category:"button",
-          click_area:area,
-          destination_url:url,
-          value:1,
-          currency:"USD"
+      function productParams(area,url){
+        return {
+          content_ids: [PRODUCT_ID],
+          content_type: "product",
+          content_name: PRODUCT_NAME,
+          content_category: PRODUCT_CATEGORY,
+          contents: [
+            {
+              id: PRODUCT_ID,
+              quantity: 1,
+              item_price: PRODUCT_VALUE
+            }
+          ],
+          value: PRODUCT_VALUE,
+          currency: PRODUCT_CURRENCY,
+          click_area: area,
+          destination_url: url,
+          event_source_url: window.location.href
         };
-        fbq("track",name,params,{eventID:eventId(name.toLowerCase())});
-        fbq("trackCustom","ButtonClick",params,{eventID:eventId("button_click")});
+      }
+
+      function leadParams(area,url){
+        return {
+          action_source: "website",
+          content_name: PRODUCT_NAME,
+          content_category: PRODUCT_CATEGORY,
+          contact_method: area === "telegram_btn" ? "telegram" : "redirect",
+          click_area: area,
+          destination_url: url,
+          event_source_url: window.location.href
+        };
+      }
+
+      function sendFallbackPixel(pixelId,eventName,params,eventID){
+        var url = "https://www.facebook.com/tr?id=" + encodeURIComponent(pixelId) +
+          "&ev=" + encodeURIComponent(eventName) +
+          "&dl=" + encodeURIComponent(window.location.href) +
+          "&rl=" + encodeURIComponent(document.referrer || "") +
+          "&if=false" +
+          "&ts=" + Date.now() +
+          "&eid=" + encodeURIComponent(eventID || eventId(eventName.toLowerCase()));
+
+        if(params){
+          Object.keys(params).forEach(function(key){
+            if(key === "contents"){
+              url += "&cd[contents]=" + encodeURIComponent(JSON.stringify(params[key]));
+            }else if(key === "content_ids"){
+              url += "&cd[content_ids]=" + encodeURIComponent(JSON.stringify(params[key]));
+            }else{
+              url += "&cd[" + encodeURIComponent(key) + "]=" + encodeURIComponent(params[key]);
+            }
+          });
+        }
+
+        var img = new Image();
+        img.src = url;
+      }
+
+      function sendFallbackAll(eventName,params,eventID){
+        PIXEL_IDS.forEach(function(pixelId){
+          sendFallbackPixel(pixelId,eventName,params,eventID);
+        });
+      }
+
+      function trackMainButton(area,url){
+        if(typeof fbq !== "function")return;
+
+        var product = productParams(area,url);
+        var lead = leadParams(area,url);
+
+        var leadEventID = eventId("lead");
+        var addToCartEventID = eventId("addtocart");
+        var buttonClickEventID = eventId("button_click");
+
+        /*
+          主按鈕事件：
+          Lead：給轉換優化
+          AddToCart：給目錄配對率
+          ButtonClick：自訂觀察點擊
+        */
+        fbq("track", "Lead", lead, {
+          eventID: leadEventID
+        });
+
+        fbq("track", "AddToCart", product, {
+          eventID: addToCartEventID
+        });
+
+        fbq("trackCustom", "ButtonClick", lead, {
+          eventID: buttonClickEventID
+        });
+
+        /*
+          備援送出：
+          Network 會更容易看到 facebook.com/tr
+        */
+        sendFallbackAll("Lead", lead, leadEventID);
+        sendFallbackAll("AddToCart", product, addToCartEventID);
+        sendFallbackAll("ButtonClick", lead, buttonClickEventID);
+      }
+
+      function trackTelegramButton(area,url){
+        if(typeof fbq !== "function")return;
+
+        var params = leadParams(area,url);
+
+        var contactEventID = eventId("contact");
+        var buttonClickEventID = eventId("button_click");
+
+        /*
+          Telegram 按鈕事件：
+          只送 Contact，不送 AddToCart / Purchase
+        */
+        fbq("track", "Contact", params, {
+          eventID: contactEventID
+        });
+
+        fbq("trackCustom", "ButtonClick", params, {
+          eventID: buttonClickEventID
+        });
+
+        sendFallbackAll("Contact", params, contactEventID);
+        sendFallbackAll("ButtonClick", params, buttonClickEventID);
       }
 
       function openLink(el){
         if(isOpening)return;
+
         isOpening = true;
-        buttons.forEach(function(item){item.classList.add("is-disabled")});
-        track(el.dataset.event,el.dataset.area,el.href);
-        setTimeout(function(){window.location.href=el.href},180);
-        setTimeout(resetState,1500);
+
+        buttons.forEach(function(item){
+          if(item){
+            item.classList.add("is-disabled");
+          }
+        });
+
+        var area = el.dataset.area || "btn";
+        var url = el.href;
+
+        if(el.id === "btn"){
+          trackMainButton(area,url);
+        }
+
+        if(el.id === "btn1"){
+          trackTelegramButton(area,url);
+        }
+
+        /*
+          延遲跳轉，讓 Pixel 有時間送出
+        */
+        setTimeout(function(){
+          window.location.href = url;
+        }, 700);
+
+        setTimeout(resetState,1800);
       }
 
       function resetState(){
         isOpening = false;
-        buttons.forEach(function(item){item.classList.remove("is-disabled")});
+
+        buttons.forEach(function(item){
+          if(item){
+            item.classList.remove("is-disabled");
+          }
+        });
       }
 
       function spawnCoin(){
         if(!layer)return;
+
         var coin = document.createElement("div");
         var dur = 6.5 + Math.random() * 4.5;
+
         coin.className = "coin";
         coin.style.setProperty("--size",Math.floor(10 + Math.random() * 18) + "px");
         coin.style.left = Math.random() * 100 + "%";
         coin.style.animationDuration = dur + "s," + (0.8 + Math.random() * 1.2) + "s";
+
         layer.appendChild(coin);
-        setTimeout(function(){coin.remove()},dur * 1000 + 200);
+
+        setTimeout(function(){
+          coin.remove();
+        },dur * 1000 + 200);
       }
 
       function startCoins(){
         if(coinTimer)return;
+
         coinTimer = setInterval(function(){
-          for(var i=0,n=1+Math.floor(Math.random()*2);i<n;i++)spawnCoin();
+          for(var i=0,n=1+Math.floor(Math.random()*2);i<n;i++){
+            spawnCoin();
+          }
         },900);
       }
 
@@ -246,10 +494,18 @@
       }
 
       startCoins();
-      document.addEventListener("visibilitychange",function(){document.hidden ? stopCoins() : startCoins()});
-      window.addEventListener("pageshow",function(e){e.persisted ? resetState() : isOpening=false});
+
+      document.addEventListener("visibilitychange",function(){
+        document.hidden ? stopCoins() : startCoins();
+      });
+
+      window.addEventListener("pageshow",function(e){
+        e.persisted ? resetState() : isOpening=false;
+      });
 
       buttons.forEach(function(el){
+        if(!el)return;
+
         el.addEventListener("click",function(e){
           e.preventDefault();
           openLink(this);
@@ -259,3 +515,4 @@
   </script>
 </body>
 </html>
+```
